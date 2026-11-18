@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Udaar Foundation (udaarfoundation.org) - Custom Stylesheet
+   Brand Palette:
+   - Primary Green:   #1E5631 (Forest) / #2D6A4F (Emerald)
+   - Secondary Green: #52B788 (Leaf)   / #74C69D (Sage)
+   - Light Surface:   #D8F3DC (Mint)   / #F0FDF4 (Soft Tint)
+   - Neutral Dark:    #1F2937 (Slate Charcoal)
+   - Backgrounds:     #FFFFFF (Pure White) / #F9FAFB (Warm Off-White)
+   - Highlight Gold:  #D97706 (Warm Ochre Gold)
+   ========================================================================== */
+
+:root {
+  --udaar-forest: #002B7F;
+  --udaar-emerald: #0038A8;
+  --udaar-leaf: #1D63ED;
+  --udaar-sage: #60A5FA;
+  --udaar-mint: #DBEAFE;
+  --udaar-tint: #EFF6FF;
+  --udaar-charcoal: #1F2937;
+  --udaar-offwhite: #F9FAFB;
+  --udaar-gold: #D97706;
+  --udaar-gold-light: #FEF3C7;
+}
+
+/* Smooth Scrolling & Base Typography */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--udaar-charcoal);
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Accessible Focus Styles (WCAG AA/AAA Compliant) */
+*:focus-visible {
+  outline: 3px solid var(--udaar-leaf);
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F0FDF4;
+}
+::-webkit-scrollbar-thumb {
+  background: #74C69D;
+  border-radius: 9999px;
+  border: 2px solid #F0FDF4;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2D6A4F;
+}
+
+/* Subtle Decorative Background Patterns */
+.hero-mesh-bg {
+  background-color: #001B4D;
+  background-image:
+    linear-gradient(to right, rgba(0, 27, 77, 0.85), rgba(0, 43, 127, 0.55)),
+    url("../images/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.leaf-pattern-subtle {
+  background-image: radial-gradient(#52B788 0.75px, transparent 0.75px), radial-gradient(#52B788 0.75px, #F0FDF4 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-color: #F0FDF4;
+}
+
+/* Navigation Active Underline Effect */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2.5px;
+  background-color: var(--udaar-forest);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--udaar-forest);
+  font-weight: 600;
+}
+
+/* Card Elevations & Transitions */
+.udaar-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.udaar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 43, 127, 0.08), 0 8px 10px -6px rgba(0, 43, 127, 0.05);
+}
+
+/* Gallery Hover Zoom Effect */
+.gallery-card {
+  overflow: hidden;
+}
+
+.gallery-card .gallery-visual {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-card:hover .gallery-visual {
+  transform: scale(1.07);
+}
+
+/* Donation Chip States */
+.donation-chip {
+  transition: all 0.2s ease;
+}
+
+.donation-chip.active {
+  background-color: var(--udaar-forest);
+  color: #FFFFFF;
+  border-color: var(--udaar-forest);
+  box-shadow: 0 10px 15px -3px rgba(0, 43, 127, 0.25);
+}
+
+.donation-chip.active .chip-subtext {
+  color: #D8F3DC;
+}
+
+/* Expandable Program Drawer Transition */
+.program-details-drawer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.25s ease;
+}
+
+.program-details-drawer.open {
+  max-height: 520px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* Modal Backdrop & Animation */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-panel {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.open .modal-panel {
+  transform: scale(1) translateY(0);
+}
+
+/* Toast Notification Animation */
+.toast-notification {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Placeholder Badge Styling for Easy Developer Identification */
+.placeholder-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.02em;
+}
+
+/* Print Friendly Styling for Donation / 80G Details */
+@media print {
+  header, footer, #work-with-us, #contact, #impact, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #FFFFFF !important;
+  }
+}
